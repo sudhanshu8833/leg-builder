@@ -6,6 +6,7 @@ import NumericInput from './components/utils/numeric_input';
 import ToggleSwitch from './components/utils/switch_toggle';
 import GreyBox from './components/utils/grey_box';
 import TimeInput from './components/utils/time_input';
+import MultiSelect from './components/utils/multi_select';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <GreyBox number = "3">
         </GreyBox>
       <TimeInput />
+      <MultiSelect />
     </div>
   );
 }
