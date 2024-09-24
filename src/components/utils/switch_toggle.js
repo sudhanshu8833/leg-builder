@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const ToggleSwitch = () => {
+const SwitchToggle = () => {
 
   return (
     <label className="relative inline-flex items-center cursor-pointer">
@@ -10,4 +10,4 @@ const ToggleSwitch = () => {
   );
 };
 
-export default ToggleSwitch;
+export default SwitchToggle;

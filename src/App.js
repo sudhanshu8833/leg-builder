@@ -1,27 +1,15 @@
 import React from 'react';
 import './App.css';
-import AddLegButton from './components/utils/add_leg_button';
-import ButtonToggle from './components/utils/button_toggle';
-import NumericInput from './components/utils/numeric_input';
-import ToggleSwitch from './components/utils/switch_toggle';
-import GreyBox from './components/utils/grey_box';
-import TimeInput from './components/utils/time_input';
-import MultiSelect from './components/utils/multi_select';
+// import Options from './components/legs/options';
+import SwitchToggle from './components/utils/switch_toggle';
+import Options from './components/leg_builder/options';
+import Futures from './components/leg_builder/futures';
 
 function App() {
   return (
     <div className="App">
-      {/* <div className="bg-blue-900 text-white p-4">
-        This is a Tailwind CSS styled component.
-      </div> */}
-      <AddLegButton text = "hello"/>
-      <ButtonToggle left = "left" right = "right"/>
-      <NumericInput />
-      <ToggleSwitch />
-      <GreyBox number = "3">
-        </GreyBox>
-      <TimeInput />
-      <MultiSelect />
+      <Options />
+      <Futures />
     </div>
   );
 }
