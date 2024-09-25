@@ -7,27 +7,26 @@ import MultiSelect from "../utils/multi_select";
 import AddLegButton from "../utils/add_leg_button";
 import LabelChildren from "../utils/combinations";
 import { LegContext } from '../../config';
-import { globalAgent } from 'http';
-
+import LegConstants from '../constants/legs';
 
 const Options = () => {
     const { globalData, updateGlobalData } = useContext(LegContext);
-    const strikeOptions = ["Strike Type", "Closest Premium", "Premium >=", "Premium <=", "Premium Range", "Straddle Width", "% of ATM", "Synthetic Future","ATM Straddle Premium %"];
 
     const handleChange = (key, value) => {
        updateGlobalData(key, value);
     };
 
     const addLeg = () => {
-        const object ={
-            PositionType: globalData.options.position,
-            Lots: globalData.options.lots,
-            InstrumentKind: globalData.options.optionType,
-            ExpiryKind: globalData.options.expiry,
-            EntryType: globalData.options.strikeCriteria,
-            StrikeParameter: globalData.options.strikeType
-        }
-        handleChange("options_legs", [...globalData.options_legs, object]);
+        const legObject = {
+            [LegConstants.POSITION_TYPE]: globalData.options.position,
+            [LegConstants.LOTS]: globalData.options.lots,
+            [LegConstants.INSTRUMENT_KIND]: globalData.options.optionType,
+            [LegConstants.EXPIRY_KIND]: globalData.options.expiry,
+            [LegConstants.ENTRY_TYPE]: globalData.options.strikeCriteria,
+            [LegConstants.STRIKE_PARAMETER]: globalData.options.strikeType
+        };
+        console.log(legObject);
+        handleChange("options_legs", [...globalData.options_legs, legObject]);
     }
 
     return (
@@ -39,22 +38,22 @@ const Options = () => {
                 <div className="flex flex-col gap-5 justify-center items-center p-4">
                     <div className="flex flex-wrap gap-10 justify-center items-center p-2">
                         <LabelChildren label="Select Segments">
-                            <ButtonToggle left="Futures" right="Options" defaultValue="Options" customKey="present_config" onChange={handleChange}/>
+                            <ButtonToggle left={LegConstants.FUTURES} right={LegConstants.OPTIONS} defaultValue={LegConstants.OPTIONS} customKey="present_config" onChange={handleChange}/>
                         </LabelChildren>
                         <LabelChildren label="Total Lot">
                             <NumberInput text="" initialValue="1" customKey="options.lots" onChange={handleChange}/>
                         </LabelChildren>
                         <LabelChildren label="Position">
-                            <ButtonToggle left="Buy" right="Sell" defaultValue="Buy" customKey="options.position" onChange={handleChange}/>
+                            <ButtonToggle left={LegConstants.BUY} right={LegConstants.SELL} defaultValue={LegConstants.BUY} customKey="options.position" onChange={handleChange}/>
                         </LabelChildren>
                         <LabelChildren label="Option Type">
-                            <ButtonToggle left="Call" right="Put" defaultValue="Call" customKey="options.optionType" onChange={handleChange}/>
+                            <ButtonToggle left={LegConstants.CALL} right={LegConstants.PUT} defaultValue={LegConstants.CALL} customKey="options.optionType" onChange={handleChange}/>
                         </LabelChildren>
                         <LabelChildren label="Expiry">
-                            <MultiSelect options={["Weekly", "Next Weekly", "Monthly"]} customKey="options.expiry" onChange={handleChange}/>
+                            <MultiSelect options={LegConstants.MULTI_EXPIRY_TYPE} customKey="options.expiry" onChange={handleChange}/>
                         </LabelChildren>
                         <LabelChildren label="Select Strike Criteria">
-                            <MultiSelect options={strikeOptions} customKey="options.strikeCriteria" onChange={handleChange}/>
+                            <MultiSelect options={LegConstants.MULTI_ENTRY_TYPE} customKey="options.strikeCriteria" onChange={handleChange}/>
                         </LabelChildren>
                         <LabelChildren label="Strike Type">
                             <MultiSelect options={["ATM", "OTP1"]} customKey="options.strikeType" onChange={handleChange}/>

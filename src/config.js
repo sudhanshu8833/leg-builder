@@ -1,10 +1,7 @@
 import React, { createContext, useState } from 'react';
+import LegConstants from './components/constants/legs';
 
-// Create the context
 export const LegContext = createContext();
-
-
-
 
 // Create a provider component
 export const LegProvider = ({ children }) => {
@@ -12,14 +9,14 @@ export const LegProvider = ({ children }) => {
                         present_config: "options",
                         futures: {
                             lots : 1,
-                            position : "Buy"
+                            position : LegConstants.BUY.value
                         },
                         options: {
                             lots : 1,
-                            position : "Buy",
-                            optionType : "Call",
-                            expiry: "Weekly",
-                            strikeCriteria: "Strike Type",
+                            position : LegConstants.BUY.value,
+                            optionType : LegConstants.CALL.value,
+                            expiry: LegConstants.WEEKLY.value,
+                            strikeCriteria: LegConstants.STRIKE_TYPE.value,
                             strikeType: "ATM"
                         },
                         futures_legs: [],
@@ -28,20 +25,26 @@ export const LegProvider = ({ children }) => {
 
         const updateGlobalData = (path, value) => {
             setGlobalData(prevData => {
-                const keys = path.split('.'); // Assuming path is 'futures_config.strategy.risk'
-                const lastKey = keys.pop(); // Get the last key
-                const nestedObject = keys.reduce((acc, key) => acc[key], prevData); // Navigate to the nested object
-        
-                // Return a new object with the updated value
+                const keys = path.split('.'); 
+                const lastKey = keys.pop();
+                const nestedObject = keys.reduce((acc, key) => acc[key], prevData);
+                
+                if (keys.length === 0) {
+                    return {
+                        ...prevData,
+                        [lastKey]: value
+                    };
+                }
                 return {
                     ...prevData,
                     [keys[0]]: {
                         ...nestedObject,
-                        [lastKey]: value // Update the specific nested property
+                        [lastKey]: value 
                     }
                 };
-            });
-        };
+            }
+        );
+    };
 
     return (
         <LegContext.Provider value={{ globalData, updateGlobalData }}>

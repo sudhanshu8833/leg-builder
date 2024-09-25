@@ -9,10 +9,14 @@ const ButtonToggle = ({left, right, customKey, onChange, defaultValue}) => {
 
     const handleToggle = (side) => {
         if (toggle === left && side === right) {
-            onChange(customKey, right);
+            if (onChange){
+                onChange(customKey, right.value);
+            }
             setToggle(right);
         } else if (toggle === right && side === left) {
-            onChange(customKey, left);
+            if (onChange) {
+                onChange(customKey, left.value);
+            }
             setToggle(left);
         }
     }
@@ -23,14 +27,14 @@ const ButtonToggle = ({left, right, customKey, onChange, defaultValue}) => {
                 className={`${toggle === left ? blueSide : whiteSide} rounded-l border-customBlue border font-semibold px-6 py-3 text-xs md:px-4 md:py-3`}
                 onClick={() => handleToggle(left)}
             >
-                {left}
+                {left.label}
             </button>
             <button
                 id="add-leg-right"
                 className={`${toggle === right ? blueSide : whiteSide} rounded-r border-customBlue border font-semibold px-6 py-3 text-xs md:px-4 md:py-3`}
                 onClick={() => handleToggle(right)}
             >
-                {right}
+                {right.label}
             </button>
         </div>
     );

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 const MultiSelect = ({options, background ,customKey , onChange}) => {
-    const [selectedOption, setSelectedOption] = useState(options[0]);
+  // console.log(options[0]);
+    const [selectedOption, setSelectedOption] = useState(options[0].value);
 
     const handleChange = (e) => {
-        setSelectedOption(e.target.value);
+      setSelectedOption(e.target.value);
         if(onChange) {
             onChange(customKey, e.target.value);
         }
@@ -19,8 +20,8 @@ const MultiSelect = ({options, background ,customKey , onChange}) => {
           onChange={handleChange}
         >
             {options.map((option) => (
-                <option className="w-max">
-                    {option}
+                <option value={option.value} className="w-max">
+                    {option.label}
                 </option>
             ))}
         </select>

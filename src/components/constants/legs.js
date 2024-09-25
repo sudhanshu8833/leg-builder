@@ -1,5 +1,5 @@
 
-class Legs {
+export default class LegConstants {
 
     // Legs keys
     static POSITION_TYPE = "PositionType";
@@ -19,6 +19,16 @@ class Legs {
     // Legs values
     static BUY = { value: "PositionType.Buy", label: "Buy" };
     static SELL = { value: "PositionType.Sell", label: "Sell" };
+
+    static FUTURES = { value: "Futures", label: "Futures" };
+    static OPTIONS = { value: "Options", label: "Options" };
+
+    static CALL = { value: "LegType.CE", label: "Call" };
+    static PUT = { value: "LegType.PE", label: "Put" };
+
+    static WEEKLY = { value: "ExpiryType.Weekly", label: "Weekly" };
+    static NEXT_WEEKLY = { value: "ExpiryType.NextWeekly", label: "Next Weekly" };
+    static MONTHLY = { value: "ExpiryType.Monthly", label: "Monthly" };
 
     static SL_TYPE_PERCENT = { value: "LegTgtSLType.Percentage", label: "Percentage" };
     static SL_TYPE_POINTS = { value: "LegTgtSLType.Points", label: "Points" };
@@ -58,53 +68,54 @@ class Legs {
     static SYNTHETIC_FUTURE = { value: "EntryType.EntryBySyntheticFuture", label: "Synthetic Future" };
 
     static MULTI_ENTRY_TYPE = [
-        Legs.STRIKE_TYPE.label,
-        Legs.CLOSEST_PREMIUM.label,
-        Legs.PREMIUM_GREATER_THAN.label,
-        Legs.PREMIUM_LESS_THAN.label,
-        Legs.PREMIUM_RANGE.label,
-        Legs.STRADDLE_WIDTH.label,
-        Legs.PERCENT_OF_ATM.label,
-        Legs.SYNTHETIC_FUTURE.label
-    ];
-
-    static MULTI_POSITION_TYPE = [
-        Legs.BUY.label,
-        Legs.SELL.label
+        LegConstants.STRIKE_TYPE,
+        LegConstants.CLOSEST_PREMIUM,
+        LegConstants.PREMIUM_GREATER_THAN,
+        LegConstants.PREMIUM_LESS_THAN,
+        LegConstants.PREMIUM_RANGE,
+        LegConstants.STRADDLE_WIDTH,
+        LegConstants.PERCENT_OF_ATM,
+        LegConstants.SYNTHETIC_FUTURE
     ];
 
     static MULTI_SL_TYPE = [
-        Legs.SL_TYPE_PERCENT.label,
-        Legs.SL_TYPE_POINTS.label,
-        Legs.SL_TYPE_UNDERLYING_PERCENT.label,
-        Legs.SL_TYPE_UNDERLYING_POINTS.label
+        LegConstants.SL_TYPE_PERCENT,
+        LegConstants.SL_TYPE_POINTS,
+        LegConstants.SL_TYPE_UNDERLYING_PERCENT,
+        LegConstants.SL_TYPE_UNDERLYING_POINTS
     ];
 
     static MULTI_TP_TYPE = [
-        Legs.TP_TYPE_PERCENT.label,
-        Legs.TP_TYPE_POINTS.label,
-        Legs.TP_TYPE_UNDERLYING_PERCENT.label,
-        Legs.TP_TYPE_UNDERLYING_POINTS.label
+        LegConstants.TP_TYPE_PERCENT,
+        LegConstants.TP_TYPE_POINTS,
+        LegConstants.TP_TYPE_UNDERLYING_PERCENT,
+        LegConstants.TP_TYPE_UNDERLYING_POINTS
     ];
 
     static MULTI_MOM_TYPE = [
-        Legs.MOM_TYPE_POINTS_UP.label,
-        Legs.MOM_TYPE_POINTS_DOWN.label,
-        Legs.MOM_TYPE_PERCENT_UP.label,
-        Legs.MOM_TYPE_PERCENT_DOWN.label,
-        Legs.MOM_TYPE_UNDERLYING_POINTS_UP.label,
-        Legs.MOM_TYPE_UNDERLYING_POINTS_DOWN.label,
-        Legs.MOM_TYPE_UNDERLYING_PERCENT_UP.label,
-        Legs.MOM_TYPE_UNDERLYING_PERCENT_DOWN.label
+        LegConstants.MOM_TYPE_POINTS_UP,
+        LegConstants.MOM_TYPE_POINTS_DOWN,
+        LegConstants.MOM_TYPE_PERCENT_UP,
+        LegConstants.MOM_TYPE_PERCENT_DOWN,
+        LegConstants.MOM_TYPE_UNDERLYING_POINTS_UP,
+        LegConstants.MOM_TYPE_UNDERLYING_POINTS_DOWN,
+        LegConstants.MOM_TYPE_UNDERLYING_PERCENT_UP,
+        LegConstants.MOM_TYPE_UNDERLYING_PERCENT_DOWN
     ];
 
     static MULTI_REENTRY_TYPE = [
-        Legs.REENTRY_TYPE_ASAP.label,
-        Legs.REENTRY_TYPE_REVERSE_ASAP.label,
-        Legs.REENTRY_TYPE_MOMENTUM.label,
-        Legs.REENTRY_TYPE_MOMENTUM_REVERSE.label,
-        Legs.REENTRY_TYPE_COST.label,
-        Legs.REENTRY_TYPE_COST_REVERSE.label,
-        Legs.REENTRY_TYPE_LAZYLEG.label
+        LegConstants.REENTRY_TYPE_ASAP,
+        LegConstants.REENTRY_TYPE_REVERSE_ASAP,
+        LegConstants.REENTRY_TYPE_MOMENTUM,
+        LegConstants.REENTRY_TYPE_MOMENTUM_REVERSE,
+        LegConstants.REENTRY_TYPE_COST,
+        LegConstants.REENTRY_TYPE_COST_REVERSE,
+        LegConstants.REENTRY_TYPE_LAZYLEG
+    ];
+
+    static MULTI_EXPIRY_TYPE = [
+        LegConstants.WEEKLY,
+        LegConstants.NEXT_WEEKLY,
+        LegConstants.MONTHLY
     ];
 }
