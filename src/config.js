@@ -19,22 +19,22 @@ export const LegProvider = ({ children }) => {
                             strikeCriteria: LegConstants.STRIKE_TYPE.value,
                             strikeType: "ATM"
                         },
-                        futures_legs: [],
-                        options_legs: []
+                        legs: []
                     });
 
-        const updateGlobalData = (path, value) => {
+        const updateGlobalData = (path, value, index = null) => {
             setGlobalData(prevData => {
                 const keys = path.split('.'); 
                 const lastKey = keys.pop();
                 const nestedObject = keys.reduce((acc, key) => acc[key], prevData);
-                
+
                 if (keys.length === 0) {
                     return {
                         ...prevData,
                         [lastKey]: value
                     };
                 }
+
                 return {
                     ...prevData,
                     [keys[0]]: {

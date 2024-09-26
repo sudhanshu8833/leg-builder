@@ -19,7 +19,7 @@ export const LabelToggleSelect = ({ label, options, children }) => (
             <SwitchToggle />
         </div>
         <div className="flex inline-block relative gap-3">
-            <MultiSelect options={options} background="bg-customBlue text-white"/>
+            <MultiSelect options={options} background="bg-customBlue text-white" customKey="options.lots"/>
             {children}
         </div>
     </div>

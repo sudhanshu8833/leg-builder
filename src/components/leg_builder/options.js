@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import LegBuilderBox from "../utils/leg_builder_box";
 import {BoldLabel} from "../utils/labels";
 import ButtonToggle from "../utils/button_toggle";
@@ -26,7 +26,8 @@ const Options = () => {
             [LegConstants.STRIKE_PARAMETER]: globalData.options.strikeType
         };
         console.log(legObject);
-        handleChange("options_legs", [...globalData.options_legs, legObject]);
+        
+        handleChange("legs", [...globalData.legs, legObject]);
     }
 
     return (

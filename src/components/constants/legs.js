@@ -57,6 +57,8 @@ export default class LegConstants {
     static REENTRY_TYPE_COST_REVERSE = { value: "ReentryType.CostReverse", label: "Cost Reverse" };
     static REENTRY_TYPE_LAZYLEG = { value: "ReentryType.LazyLeg", label: "Lazy Leg" };
 
+    static TRAIL_TYPE_POINTS = { value: "TrailStopLossType.Points", label: "Points" };
+    static TRAIL_TYPE_PERCENT = { value: "TrailStopLossType.Percentage", label: "Percentage" };
 
     static STRIKE_TYPE = { value: "EntryType.EntryByStrikeType", label: "Strike Type" };
     static CLOSEST_PREMIUM = { value: "EntryType.EntryByClosestPremium", label: "Closest Premium" };
@@ -117,5 +119,20 @@ export default class LegConstants {
         LegConstants.WEEKLY,
         LegConstants.NEXT_WEEKLY,
         LegConstants.MONTHLY
+    ];
+
+    static MULTI_POSITION_TYPE = [
+        LegConstants.BUY,
+        LegConstants.SELL
+    ];
+
+    static MULTI_OPTION_TYPE = [
+        LegConstants.CALL,
+        LegConstants.PUT
+    ];
+
+    static MUTLI_TRAIL_TYPE = [
+        LegConstants.TRAIL_TYPE_POINTS,
+        LegConstants.TRAIL_TYPE_PERCENT
     ];
 }
