@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import LegConstants from './components/constants/legs';
+import LegConstants from './components/constants/leg_constants';
 
 export const LegContext = createContext();
 
@@ -22,28 +22,28 @@ export const LegProvider = ({ children }) => {
                         legs: []
                     });
 
-        const updateGlobalData = (path, value, index = null) => {
-            setGlobalData(prevData => {
-                const keys = path.split('.'); 
-                const lastKey = keys.pop();
-                const nestedObject = keys.reduce((acc, key) => acc[key], prevData);
+    const updateGlobalData = (path, value) => {
+        setGlobalData(prevData => {
+            const keys = path.split('.');
+            const lastKey = keys.pop();
+            let nestedObject = { ...prevData };
+            let currentLevel = nestedObject;
 
-                if (keys.length === 0) {
-                    return {
-                        ...prevData,
-                        [lastKey]: value
-                    };
-                }
-
-                return {
-                    ...prevData,
-                    [keys[0]]: {
-                        ...nestedObject,
-                        [lastKey]: value 
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i];
+                if (!isNaN(key)) {
+                    const arrayIndex = Number(key);
+                    currentLevel = prevData.legs[arrayIndex];
+                } else {
+                    if (!currentLevel[key]) {
+                        currentLevel[key] = { ...prevData[key] }; 
                     }
-                };
+                    currentLevel = currentLevel[key];
+                }
             }
-        );
+            currentLevel[lastKey] = value;
+            return nestedObject;
+        });
     };
 
     return (

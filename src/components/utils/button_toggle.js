@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const ButtonToggle = ({left, right, customKey, onChange, defaultValue}) => {
+const ButtonToggle = ({left, right, onChange, defaultValue}) => {
     const [toggle, setToggle] = useState(defaultValue);
     
     const blueSide = "bg-customBlue text-white";
@@ -10,12 +10,12 @@ const ButtonToggle = ({left, right, customKey, onChange, defaultValue}) => {
     const handleToggle = (side) => {
         if (toggle === left && side === right) {
             if (onChange){
-                onChange(customKey, right.value);
+                onChange(right.value);
             }
             setToggle(right);
         } else if (toggle === right && side === left) {
             if (onChange) {
-                onChange(customKey, left.value);
+                onChange(left.value);
             }
             setToggle(left);
         }

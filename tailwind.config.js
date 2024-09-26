@@ -5,6 +5,7 @@ module.exports = {
     ],
     theme: {
         extend: {
+
           colors: {
             customBlue: 'rgb(11 97 155)',
             addLegBlueButton: {

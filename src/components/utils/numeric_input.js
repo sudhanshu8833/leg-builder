@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-const NumberInput = ({text, initialValue, customKey, onChange}) => {
+const NumberInput = ({text, initialValue, onChange}) => {
   const [value, setValue] = useState(initialValue);
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    onChange(customKey, e.target.value);
+    onChange(e.target.value);
   };
 
   const rightPadding = text === "%" ? "pr-6" : "pr-0"; 

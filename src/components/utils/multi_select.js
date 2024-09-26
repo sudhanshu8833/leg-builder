@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 
-const MultiSelect = ({options, background ,customKey , onChange}) => {
-  // console.log(options[0]);
-    const [selectedOption, setSelectedOption] = useState(options[0].value);
+const MultiSelect = ({initialValue, options, background , onChange}) => {
+    const [selectedOption, setSelectedOption] = useState(initialValue);
 
     const handleChange = (e) => {
       setSelectedOption(e.target.value);
         if(onChange) {
-            onChange(customKey, e.target.value);
+            onChange(e.target.value);
         }
     };
-  
+
     return (
       <div className="relative w-max">
         <select
