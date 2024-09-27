@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SwitchToggle = ({ onChange }) => {
+const SwitchToggle = ({ onChange, initialValue }) => {
+  const [isChecked, setIsChecked] = useState(initialValue);
 
-  const handleChange = (e) => {
-    onChange(e.target.checked);
-  }
+    useEffect(() => {
+      setIsChecked(initialValue);
+    }, [initialValue]);
+
+    const handleChange = (e) => {
+      const isChecked = e.target.checked;
+      setIsChecked(isChecked);
+      onChange(isChecked);
+    };
 
   return (
     <label className="relative inline-flex items-center cursor-pointer">
       <input 
         type="checkbox" 
-        value="" 
+        checked={isChecked}
         className="sr-only peer" 
         onChange={handleChange}
       />

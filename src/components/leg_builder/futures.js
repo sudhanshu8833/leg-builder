@@ -20,7 +20,7 @@ const Futures = ({onChange}) => {
             [LegConstants.LEG_TYPE]: 'futures',
             [LegConstants.POSITION_TYPE]: globalData.futures.position,
             [LegConstants.LOTS]: globalData.futures.lots,
-            ...LegConstants.DEFAULT_LEG_VALUES
+            ...JSON.parse(JSON.stringify(LegConstants.DEFAULT_LEG_VALUES))
         };
 
         handleChange("legs", [...globalData.legs, legObject]);

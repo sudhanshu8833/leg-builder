@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NumberInput = ({text, initialValue, onChange}) => {
+const NumberInput = ({text, initialValue, onChange, background}) => {
   const [value, setValue] = useState(initialValue);
 
   const handleChange = (e) => {
@@ -14,14 +14,14 @@ const NumberInput = ({text, initialValue, onChange}) => {
       <input
         title=""
         id="number-input"
-        className={`relative w-20 h-10 rounded border border-gray-300 px-1 py-2 text-xs md:text-xs ${rightPadding} appearance-none`}
+        className={`relative w-20 h-10 rounded border border-gray-300 px-1 py-2 text-xs md:text-xs ${rightPadding} appearance-none ${background}`}
         type="number"
         min="1"
         step="1"
         value={value}
         onChange={handleChange}
       />
-      <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs text-gray-500">{text}</span>
+      <span className={`absolute right-2 top-1/2 transform -translate-y-1/2 text-xs text-gray-500 ${background}`}>{text}</span>
     </div>
   );
 };

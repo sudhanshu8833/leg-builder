@@ -10,6 +10,8 @@ import LegConstants from "../constants/leg_constants";
 const Legs = () => {
     const { globalData, updateGlobalData } = useContext(LegContext);
 
+    const opacity = "opacity-40 cursor-not-allowed appearance-none";
+
     const handleChange = (key, value) => {
         updateGlobalData(key, value);
      };
@@ -44,49 +46,49 @@ const Legs = () => {
                         <div className="flex flex-col gap-5 justify-center items-center px-4">
                             <div className="flex flex-wrap gap-10 justify-center items-center p-2">
                                 <LabelChildren label="Lots">
-                                    <NumberInput initialValue={leg[LegConstants.LOTS]} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LOTS}.value`, value)}/>
+                                    <NumberInput initialValue={leg[LegConstants.LOTS]} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LOTS}`, value)}/>
                                 </LabelChildren>
                                 <LabelChildren label="Position">
-                                    <MultiSelect initialValue={leg[LegConstants.POSITION_TYPE]} options={LegConstants.MULTI_POSITION_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.POSITION_TYPE}.value`, value)}/>
+                                    <MultiSelect initialValue={leg[LegConstants.POSITION_TYPE]} options={LegConstants.MULTI_POSITION_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.POSITION_TYPE}`, value)}/>
                                 </LabelChildren>
 
                                 {leg[LegConstants.LEG_TYPE] === 'options' ? (
                                     <>
                                 <LabelChildren label="Option Type">
-                                    <MultiSelect initialValue={leg[LegConstants.INSTRUMENT_KIND]} options={LegConstants.MULTI_OPTION_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.INSTRUMENT_KIND}.value`, value)}/>
+                                    <MultiSelect initialValue={leg[LegConstants.INSTRUMENT_KIND]} options={LegConstants.MULTI_OPTION_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.INSTRUMENT_KIND}`, value)}/>
                                 </LabelChildren>
                                 <LabelChildren label="Expiry">
-                                    <MultiSelect initialValue={leg[LegConstants.EXPIRY_KIND]} options={LegConstants.MULTI_EXPIRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.EXPIRY_KIND}.value`, value)}/>
+                                    <MultiSelect initialValue={leg[LegConstants.EXPIRY_KIND]} options={LegConstants.MULTI_EXPIRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.EXPIRY_KIND}`, value)}/>
                                 </LabelChildren>
                                 <LabelChildren label="Select Strike Criteria">
-                                    <MultiSelect initialValue={leg[LegConstants.ENTRY_TYPE]} options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.ENTRY_TYPE}.value`, value)}/>
+                                    <MultiSelect initialValue={leg[LegConstants.ENTRY_TYPE]} options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.ENTRY_TYPE}`, value)}/>
                                 </LabelChildren>
                                 <LabelChildren label="Strike Type">
-                                    <MultiSelect initialValue={leg[LegConstants.STRIKE_PARAMETER]} options={["ATM", "OTP1"]} onChange={(value) => handleChange(`legs.${index}.${LegConstants.STRIKE_PARAMETER}.value`, value)}/>
+                                    <MultiSelect initialValue={leg[LegConstants.STRIKE_PARAMETER]} options={["ATM", "OTP1"]} onChange={(value) => handleChange(`legs.${index}.${LegConstants.STRIKE_PARAMETER}`, value)}/>
                                 </LabelChildren>
                                 </>
                                 ): null }
 
                             </div>
                             <div className="flex flex-wrap gap-10 justify-center items-center p-2">
-                                <LabelToggleSelect initialValue={leg[LegConstants.LEG_TARGET].Type} label="Target Profit" options={LegConstants.MULTI_TP_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type,`legs.${index}.${LegConstants.LEG_TARGET}`, value)}>
-                                    <NumberInput initialValue={leg[LegConstants.LEG_TARGET].value} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_TARGET}.value`, value)}/>
+                                <LabelToggleSelect initialValue={[leg[LegConstants.LEG_TARGET].Type, leg[LegConstants.LEG_TARGET].active]} background = {leg[LegConstants.LEG_TARGET].active ? "" : opacity} label="Target Profit" options={LegConstants.MULTI_TP_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type,`legs.${index}.${LegConstants.LEG_TARGET}`, value)}>
+                                    <NumberInput initialValue={leg[LegConstants.LEG_TARGET].value} background = {leg[LegConstants.LEG_TARGET].active ? "" : opacity} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_TARGET}.value`, value)}/>
                                 </LabelToggleSelect>
-                                <LabelToggleSelect initialValue={leg[LegConstants.LEG_STOP_LOSS].Type} label="Stop loss" options={LegConstants.MULTI_SL_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_STOP_LOSS}`, value)}>
-                                    <NumberInput initialValue={leg[LegConstants.LEG_STOP_LOSS].value} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_STOP_LOSS}.value`, value)}/>
+                                <LabelToggleSelect initialValue={[leg[LegConstants.LEG_STOP_LOSS].Type, leg[LegConstants.LEG_STOP_LOSS].active]} background = {leg[LegConstants.LEG_STOP_LOSS].active ? "" : opacity} label="Stop loss" options={LegConstants.MULTI_SL_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_STOP_LOSS}`, value)}>
+                                    <NumberInput initialValue={leg[LegConstants.LEG_STOP_LOSS].value} background = {leg[LegConstants.LEG_STOP_LOSS].active ? "" : opacity} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_STOP_LOSS}.value`, value)}/>
                                 </LabelToggleSelect>
-                                <LabelToggleSelect initialValue={leg[LegConstants.LEG_TRAIL_SL].Type} label="Trail SL" options={LegConstants.MUTLI_TRAIL_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_TRAIL_SL}`, value)}>
-                                    <NumberInput initialValue={leg[LegConstants.LEG_TRAIL_SL].value.InstrumentMove} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_TRAIL_SL}.value.InstrumentMove`, value)}/>
-                                    <NumberInput initialValue={leg[LegConstants.LEG_TRAIL_SL].value.StopLossMove} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_TARGET}.value.StopLossMove`, value)}/>
+                                <LabelToggleSelect initialValue={[leg[LegConstants.LEG_TRAIL_SL].Type, leg[LegConstants.LEG_TRAIL_SL].active]}  background = {leg[LegConstants.LEG_TRAIL_SL].active ? "" : opacity} label="Trail SL" options={LegConstants.MUTLI_TRAIL_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_TRAIL_SL}`, value)}>
+                                    <NumberInput initialValue={leg[LegConstants.LEG_TRAIL_SL].value.InstrumentMove} background = {leg[LegConstants.LEG_TRAIL_SL].active ? "" : opacity}  onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_TRAIL_SL}.value.InstrumentMove`, value)}/>
+                                    <NumberInput initialValue={leg[LegConstants.LEG_TRAIL_SL].value.StopLossMove}  background = {leg[LegConstants.LEG_TRAIL_SL].active ? "" : opacity}  onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_TARGET}.value.StopLossMove`, value)}/>
                                 </LabelToggleSelect>
-                                <LabelToggleSelect initialValue={leg[LegConstants.LEG_REENTRY_TP].Type} label="Re-entry on Tgt" options={LegConstants.MULTI_REENTRY_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_REENTRY_TP}`, value)}>
-                                    <NumberInput initialValue={leg[LegConstants.LEG_REENTRY_TP].value} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_REENTRY_TP}.value`, value)}/>
+                                <LabelToggleSelect initialValue={[leg[LegConstants.LEG_REENTRY_TP].Type, leg[LegConstants.LEG_REENTRY_TP].active]}  background = {leg[LegConstants.LEG_REENTRY_TP].active ? "" : opacity}  label="Re-entry on Tgt" options={LegConstants.MULTI_REENTRY_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_REENTRY_TP}`, value)}>
+                                    <NumberInput initialValue={leg[LegConstants.LEG_REENTRY_TP].value} background = {leg[LegConstants.LEG_REENTRY_TP].active ? "" : opacity}  onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_REENTRY_TP}.value`, value)}/>
                                 </LabelToggleSelect>
-                                <LabelToggleSelect initialValue={leg[LegConstants.LEG_REENTRY_SL].Type} label="Re-entry on SL" options={LegConstants.MULTI_REENTRY_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_REENTRY_SL}`, value)}>
-                                    <NumberInput initialValue={leg[LegConstants.LEG_REENTRY_SL].value} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_REENTRY_SL}.value`, value)}/>
+                                <LabelToggleSelect initialValue={[leg[LegConstants.LEG_REENTRY_SL].Type, leg[LegConstants.LEG_REENTRY_SL].active]}  background = {leg[LegConstants.LEG_REENTRY_SL].active ? "" : opacity}  label="Re-entry on SL" options={LegConstants.MULTI_REENTRY_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_REENTRY_SL}`, value)}>
+                                    <NumberInput initialValue={leg[LegConstants.LEG_REENTRY_SL].value}  background = {leg[LegConstants.LEG_REENTRY_SL].active ? "" : opacity}  onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_REENTRY_SL}.value`, value)}/>
                                 </LabelToggleSelect>
-                                <LabelToggleSelect initialValue={leg[LegConstants.LEG_MOMENTUM].Type} label="Simple Momentum" options={LegConstants.MULTI_MOM_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_MOMENTUM}`, value)}>
-                                    <NumberInput initialValue={leg[LegConstants.LEG_MOMENTUM].value} onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_MOMENTUM}.value`, value)}/>
+                                <LabelToggleSelect initialValue={[leg[LegConstants.LEG_MOMENTUM].Type, leg[LegConstants.LEG_MOMENTUM].active]}  background = {leg[LegConstants.LEG_MOMENTUM].active ? "" : opacity}  label="Simple Momentum" options={LegConstants.MULTI_MOM_TYPE} onChange = {(type, value)=> handleToggleSelectChange(type, `legs.${index}.${LegConstants.LEG_MOMENTUM}`, value)}>
+                                    <NumberInput initialValue={leg[LegConstants.LEG_MOMENTUM].value} background = {leg[LegConstants.LEG_MOMENTUM].active ? "" : opacity}  onChange={(value) => handleChange(`legs.${index}.${LegConstants.LEG_MOMENTUM}.value`, value)}/>
                                 </LabelToggleSelect>
                             </div>
                         </div>

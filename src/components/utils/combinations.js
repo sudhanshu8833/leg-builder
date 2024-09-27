@@ -14,11 +14,10 @@ function LabelChildren({ label, children }) {
 }
 
 
-export const LabelToggleSelect = ({ initialValue, label, options, children, onChange }) => {
+export const LabelToggleSelect = ({ initialValue, label, options, children, onChange, background }) => {
     const handleSwitchChange = (value) => {
         onChange('switch', value);
     };
-
     const handleMultiSelectChange = (value) => {
         onChange('multiSelect', value);
     };
@@ -27,10 +26,10 @@ export const LabelToggleSelect = ({ initialValue, label, options, children, onCh
         <div className="relative inline-block flex flex-col gap-3 text-left">
             <div className="flex inline-block relative gap-3">
                 <Label text={label} />
-                <SwitchToggle onChange={handleSwitchChange}/>
+                <SwitchToggle initialValue={initialValue[1]} onChange={handleSwitchChange}/>
             </div>
             <div className="flex inline-block relative gap-3">
-                <MultiSelect initialValue={initialValue} options={options} background="bg-customBlue text-white" onChange={handleMultiSelectChange} />
+                <MultiSelect initialValue={initialValue[0]} options={options} background={`bg-customBlue text-white ${background}`} onChange={handleMultiSelectChange} />
                 {children}
             </div>
         </div>

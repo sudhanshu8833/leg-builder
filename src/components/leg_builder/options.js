@@ -25,7 +25,7 @@ const Options = ({onChange}) => {
             [LegConstants.EXPIRY_KIND]: globalData.options.expiry,
             [LegConstants.ENTRY_TYPE]: globalData.options.strikeCriteria,
             [LegConstants.STRIKE_PARAMETER]: globalData.options.strikeType,
-            ...LegConstants.DEFAULT_LEG_VALUES
+            ...JSON.parse(JSON.stringify(LegConstants.DEFAULT_LEG_VALUES))
         };
 
         handleChange("legs", [...globalData.legs, legObject]);

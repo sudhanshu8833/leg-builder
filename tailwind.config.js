@@ -12,9 +12,13 @@ module.exports = {
                 900: 'rgb(12 74 110)',
                 800: 'rgb(6 64 100)'
             },
-            toggleBlue: 'rgb(7 130 218)',
-            boxColor: 'rgb(248 248 248)',
+              toggleBlue: 'rgb(7 130 218)',
+              boxColor: 'rgb(248 248 248)',
+              blackTextColor:{
+                800: 'rgb(42 42 42/var(--tw-text-opacity))'
+              }
           },
+
         },
       },
     plugins: [],
