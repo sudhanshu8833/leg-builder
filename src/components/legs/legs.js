@@ -6,6 +6,7 @@ import MultiSelect from "../utils/multi_select";
 import LabelChildren, { LabelToggleSelect } from "../utils/combinations";
 import { LegContext } from '../../config';
 import LegConstants from "../constants/leg_constants";
+import StrikeElementReturn from "../utils/strike_criteria_options";
 
 const Legs = () => {
     const { globalData, updateGlobalData } = useContext(LegContext);
@@ -29,7 +30,7 @@ const Legs = () => {
             updateGlobalData('legs', globalData.legs.filter((leg, i) => i !== index));
         }
         else{
-            updateGlobalData('legs', [...globalData.legs, globalData.legs[index]]);
+            updateGlobalData('legs', [...globalData.legs, JSON.parse(JSON.stringify(globalData.legs[index]))]);
         }
     }
 
@@ -63,9 +64,7 @@ const Legs = () => {
                                 <LabelChildren label="Select Strike Criteria">
                                     <MultiSelect initialValue={leg[LegConstants.ENTRY_TYPE]} options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.ENTRY_TYPE}`, value)}/>
                                 </LabelChildren>
-                                <LabelChildren label="Strike Type">
-                                    <MultiSelect initialValue={leg[LegConstants.STRIKE_PARAMETER]} options={["ATM", "OTP1"]} onChange={(value) => handleChange(`legs.${index}.${LegConstants.STRIKE_PARAMETER}`, value)}/>
-                                </LabelChildren>
+                                <StrikeElementReturn strikeCriteria={leg[LegConstants.ENTRY_TYPE]}/>
                                 </>
                                 ): null }
 

@@ -30,7 +30,7 @@ const MultiSelect = ({initialValue, options, background , onChange}) => {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        stroke={background.includes('text-white')? "white": "currentColor"}
+        stroke={background.includes('text-white')? "white": "black"}
         className="pointer-events-none absolute right-0 top-1/2 transform -translate-y-1/2 mr-3 h-4 w-4 md:top-1/2 md:-translate-y-1/2 text-white"
       >
         <path

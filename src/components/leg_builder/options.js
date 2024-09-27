@@ -8,6 +8,7 @@ import AddLegButton from "../utils/add_leg_button";
 import LabelChildren from "../utils/combinations";
 import { LegContext } from '../../config';
 import LegConstants from '../constants/leg_constants';
+import StrikeElementReturn from '../utils/strike_criteria_options';
 
 const Options = ({onChange}) => {
     const { globalData, updateGlobalData } = useContext(LegContext);
@@ -61,9 +62,7 @@ const Options = ({onChange}) => {
                         <LabelChildren label="Select Strike Criteria">
                             <MultiSelect options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value)=> handleChange('options.strikeCriteria',value)}/>
                         </LabelChildren>
-                        <LabelChildren label="Strike Type">
-                            <MultiSelect options={["ATM", "OTP1"]} onChange={(value)=> handleChange('options.strikeType',value)}/>
-                        </LabelChildren>
+                        <StrikeElementReturn strikeCriteria={globalData.options.strikeCriteria}/>
                     </div>
                     <AddLegButton text="Add Leg" onClick={addLeg}/>
                 </div>

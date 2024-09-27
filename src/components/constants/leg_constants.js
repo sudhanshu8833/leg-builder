@@ -75,6 +75,7 @@ export default class LegConstants {
     static STRADDLE_WIDTH = { value: "EntryType.EntryByStraddleWidth", label: "Straddle Width"};
     static PERCENT_OF_ATM = { value: "EntryType.EntryByPercentOfATM", label: "% of ATM"};
     static SYNTHETIC_FUTURE = { value: "EntryType.EntryBySyntheticFuture", label: "Synthetic Future"};
+    static ATM_STRADDLE_PREMIUM_PER = { value: "EntryType.EntryByATMStraddlePremiumPer", label: "ATM Straddle Premium %"};
 
     static MULTI_ENTRY_TYPE = [
         LegConstants.STRIKE_TYPE,
@@ -196,4 +197,16 @@ export default class LegConstants {
             active: false
         }
     };
+
+    static STRIKE_TYPE_VALUES = [
+        ...Array.from({ length: 20 }, (_, i) => ({ value: `ITM${20 - i}`, label: `ITM${20 - i}` })),
+        { value: 'ATM', label: 'ATM' },
+        ...Array.from({ length: 20 }, (_, i) => ({ value: `OTM${i + 1}`, label: `OTM${i + 1}` }))
+    ];;
+
+    static OPERATOR_VALUES = [
+        { value: "+", label: "+" },
+        { value: "-", label: "-" }
+    ];
+
 }

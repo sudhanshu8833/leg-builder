@@ -5,7 +5,9 @@ const NumberInput = ({text, initialValue, onChange, background}) => {
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    onChange(e.target.value);
+    if(onChange){
+      onChange(e.target.value);
+    }
   };
 
   const rightPadding = text === "%" ? "pr-6" : "pr-0"; 
