@@ -17,7 +17,9 @@ export const LegProvider = ({ children }) => {
                             optionType : LegConstants.CALL.value,
                             expiry: LegConstants.WEEKLY.value,
                             strikeCriteria: LegConstants.STRIKE_TYPE.value,
-                            strikeType: "ATM"
+                            StrikeParameter: {
+                                value: ["StrikeType.ATM"],
+                            }
                         },
                         legs: []
                     });

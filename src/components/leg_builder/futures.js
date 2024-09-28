@@ -27,7 +27,7 @@ const Futures = ({onChange}) => {
     }
 
     useEffect(() => {
-        console.log("Global data updated:", globalData);
+        // console.log("Global data updated:", globalData);
     }, [globalData]);
 
     return (

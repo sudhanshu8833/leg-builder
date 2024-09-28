@@ -8,15 +8,18 @@ import AddLegButton from "../utils/add_leg_button";
 import LabelChildren from "../utils/combinations";
 import { LegContext } from '../../config';
 import LegConstants from '../constants/leg_constants';
-import StrikeElementReturn from '../utils/strike_criteria_options';
+import StrikeElementReturn, {getStrikeParameterArray} from '../utils/strike_criteria_options';
 
 const Options = ({onChange}) => {
     const { globalData, updateGlobalData } = useContext(LegContext);
 
-    const handleChange = (key, value) => {
-       updateGlobalData(key, value);
-    };
-
+    const handleChange = (key, value, strikeCriteria = null) => {
+        updateGlobalData(key, value);
+        if(strikeCriteria){
+            const strikeParameterArray = getStrikeParameterArray(value);
+            updateGlobalData('options.StrikeParameter.value', strikeParameterArray);
+        };
+    }
     const addLeg = () => {
         const legObject = {
             [LegConstants.LEG_TYPE]: 'options',
@@ -25,7 +28,9 @@ const Options = ({onChange}) => {
             [LegConstants.INSTRUMENT_KIND]: globalData.options.optionType,
             [LegConstants.EXPIRY_KIND]: globalData.options.expiry,
             [LegConstants.ENTRY_TYPE]: globalData.options.strikeCriteria,
-            [LegConstants.STRIKE_PARAMETER]: globalData.options.strikeType,
+            [LegConstants.STRIKE_PARAMETER]: {
+                value: globalData.options.StrikeParameter.value,
+            },
             ...JSON.parse(JSON.stringify(LegConstants.DEFAULT_LEG_VALUES))
         };
 
@@ -33,7 +38,7 @@ const Options = ({onChange}) => {
     }
 
     useEffect(() => {
-        console.log("Global data updated:", globalData);
+        // console.log("Global data updated:", globalData);
     }, [globalData]);
 
     return (
@@ -60,11 +65,11 @@ const Options = ({onChange}) => {
                             <MultiSelect options={LegConstants.MULTI_EXPIRY_TYPE} onChange={(value)=> handleChange('options.expiry',value)}/>
                         </LabelChildren>
                         <LabelChildren label="Select Strike Criteria">
-                            <MultiSelect options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value)=> handleChange('options.strikeCriteria',value)}/>
+                            <MultiSelect initialValue={globalData.options.strikeCriteria} options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value)=> handleChange('options.strikeCriteria',value, true)}/>
                         </LabelChildren>
-                        <StrikeElementReturn strikeCriteria={globalData.options.strikeCriteria}/>
+                        <StrikeElementReturn strikeCriteria={globalData.options.strikeCriteria} onChange = {handleChange} type="options"/>
                     </div>
-                    <AddLegButton text="Add Leg" onClick={addLeg}/>
+                    <AddLegButton text="Add Leg" onClick={addLeg} defaultValue = {false}/>
                 </div>
             </LegBuilderBox>
         </div>

@@ -189,19 +189,12 @@ export default class LegConstants {
             value: 1,  // Default Reentry TP value
             active: false
         },
-
-        [LegConstants.RANGE_BREAKOUT]: {
-            Type: LegConstants.RANGE_BREAKOUT_TYPE_INSTRUMENT.value,  // Default Range Breakout Type
-            Range: "High",
-            value: "09:45",  // Default Range Breakout value
-            active: false
-        }
     };
 
     static STRIKE_TYPE_VALUES = [
-        ...Array.from({ length: 20 }, (_, i) => ({ value: `ITM${20 - i}`, label: `ITM${20 - i}` })),
-        { value: 'ATM', label: 'ATM' },
-        ...Array.from({ length: 20 }, (_, i) => ({ value: `OTM${i + 1}`, label: `OTM${i + 1}` }))
+        ...Array.from({ length: 20 }, (_, i) => ({ value: `StrikeType.ITM${20 - i}`, label: `ITM${20 - i}` })),
+        { value: 'StrikeType.ATM', label: 'ATM' },
+        ...Array.from({ length: 20 }, (_, i) => ({ value: `StrikeType.OTM${i + 1}`, label: `OTM${i + 1}` }))
     ];;
 
     static OPERATOR_VALUES = [

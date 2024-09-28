@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MultiSelect = ({initialValue, options, background , onChange}) => {
     const [selectedOption, setSelectedOption] = useState(initialValue);
@@ -9,7 +9,6 @@ const MultiSelect = ({initialValue, options, background , onChange}) => {
             onChange(e.target.value);
         }
     };
-    
 
     return (
       <div className="relative w-max">
@@ -20,7 +19,7 @@ const MultiSelect = ({initialValue, options, background , onChange}) => {
           onChange={handleChange}
         >
             {options.map((option) => (
-                <option value={option.value} className="w-max">
+                <option key = {option.value} value={option.value} className="w-max">
                     {option.label}
                 </option>
             ))}

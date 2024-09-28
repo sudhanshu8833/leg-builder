@@ -6,15 +6,19 @@ import MultiSelect from "../utils/multi_select";
 import LabelChildren, { LabelToggleSelect } from "../utils/combinations";
 import { LegContext } from '../../config';
 import LegConstants from "../constants/leg_constants";
-import StrikeElementReturn from "../utils/strike_criteria_options";
+import StrikeElementReturn, {getStrikeParameterArray} from "../utils/strike_criteria_options";
 
 const Legs = () => {
     const { globalData, updateGlobalData } = useContext(LegContext);
 
     const opacity = "opacity-40 cursor-not-allowed appearance-none";
 
-    const handleChange = (key, value) => {
+    const handleChange = (key, value, strikeCriteria = null, index = null) => {
         updateGlobalData(key, value);
+        if(strikeCriteria){
+            const strikeParameterArray = getStrikeParameterArray(value);
+            updateGlobalData(`legs.${index}.StrikeParameter.value`, strikeParameterArray);
+        }
      };
 
     const handleToggleSelectChange = (type, key, value) => {
@@ -62,9 +66,9 @@ const Legs = () => {
                                     <MultiSelect initialValue={leg[LegConstants.EXPIRY_KIND]} options={LegConstants.MULTI_EXPIRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.EXPIRY_KIND}`, value)}/>
                                 </LabelChildren>
                                 <LabelChildren label="Select Strike Criteria">
-                                    <MultiSelect initialValue={leg[LegConstants.ENTRY_TYPE]} options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.ENTRY_TYPE}`, value)}/>
+                                    <MultiSelect initialValue={leg[LegConstants.ENTRY_TYPE]} options={LegConstants.MULTI_ENTRY_TYPE} onChange={(value) => handleChange(`legs.${index}.${LegConstants.ENTRY_TYPE}`, value, true, index)}/>
                                 </LabelChildren>
-                                <StrikeElementReturn strikeCriteria={leg[LegConstants.ENTRY_TYPE]}/>
+                                <StrikeElementReturn strikeCriteria={leg[LegConstants.ENTRY_TYPE]} onChange = {handleChange} type={`legs.${index}`} defaultValue={true} legIndex = {index}/>
                                 </>
                                 ): null }
 
