@@ -1,14 +1,17 @@
-import React, { useContext, useEffect } from 'react'
-import LegBuilderBox from '../utils/leg_builder_box'
-import { BoldLabel } from '../utils/labels'
-import ButtonToggle from '../utils/button_toggle'
-import NumberInput from '../utils/numeric_input'
-import MultiSelect from '../utils/multi_select'
-import AddLegButton from '../utils/add_leg_button'
-import LabelChildren from '../utils/combinations'
+import React, { useContext } from 'react'
+import {
+    LegBuilderBox,
+    BoldLabel,
+    ButtonToggle,
+    NumberInput,
+    MultiSelect,
+    AddLegButton,
+    LabelChildren,
+    StrikeElementReturn,
+    getStrikeParameterArray
+} from '../utils'
 import { LegContext } from '../../config'
 import LegConstants from '../constants/leg_constants'
-import StrikeElementReturn, { getStrikeParameterArray } from '../utils/strike_criteria_options'
 
 const Options = ({ onChange }) => {
   const { globalData, updateGlobalData } = useContext(LegContext)
@@ -36,10 +39,6 @@ const Options = ({ onChange }) => {
 
     handleChange('legs', [...globalData.legs, legObject])
   }
-
-  useEffect(() => {
-    // console.log("Global data updated:", globalData);
-  }, [globalData])
 
   return (
     <div>

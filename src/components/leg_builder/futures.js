@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from 'react'
-import LegBuilderBox from '../utils/leg_builder_box'
-import { BoldLabel } from '../utils/labels'
-import ButtonToggle from '../utils/button_toggle'
-import NumberInput from '../utils/numeric_input'
-import AddLegButton from '../utils/add_leg_button'
-import LabelChildren from '../utils/combinations'
+import { 
+    LegBuilderBox, 
+    BoldLabel, 
+    ButtonToggle, 
+    NumberInput, 
+    AddLegButton, 
+    LabelChildren 
+} from '../utils'
 import { LegContext } from '../../config'
 import LegConstants from '../constants/leg_constants'
 
@@ -27,7 +29,6 @@ const Futures = ({ onChange }) => {
   }
 
   useEffect(() => {
-    // console.log("Global data updated:", globalData);
   }, [globalData])
 
   return (

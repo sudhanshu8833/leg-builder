@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { LegContext } from '../../config';
 import LegConstants from '../constants/leg_constants';
 import { collection, addDoc } from 'firebase/firestore';
@@ -24,7 +24,7 @@ const updateStrikeParameter = (leg) => {
             case LegConstants.STRADDLE_WIDTH.value:
             case LegConstants.PERCENT_OF_ATM.value:
                 return {
-                    Adjustment: leg.StrikeParameter.value[0] == '+'? 'Plus':'Minus',
+                    Adjustment: leg.StrikeParameter.value[0] === '+'? 'Plus':'Minus',
                     Multiplier: leg.StrikeParameter.value[1]
                 };
             default:
@@ -36,7 +36,7 @@ const updateStrikeParameter = (leg) => {
 
 
 const SendDataButton = ({text}) => {
-    const { globalData, updateGlobalData } = useContext(LegContext);
+    const { globalData } = useContext(LegContext);
 
     const handleClick = () => {
         const dataToSend = [];

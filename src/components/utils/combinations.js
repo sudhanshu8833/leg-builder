@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { Label, BoldLabel } from './labels'
+import React from 'react'
+import { Label } from './labels'
 import SwitchToggle from '../utils/switch_toggle'
 import MultiSelect from '../utils/multi_select'
 
@@ -46,4 +46,4 @@ export const LabelToggleSelect = ({
   )
 }
 
-export default LabelChildren
+export default LabelChildren;

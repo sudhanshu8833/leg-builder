@@ -1,12 +1,17 @@
-import React, { useContext, useEffect } from 'react'
-import LegBox from '../utils/leg_box'
-import { BoldLabel } from '../utils/labels'
-import NumberInput from '../utils/numeric_input'
-import MultiSelect from '../utils/multi_select'
-import LabelChildren, { LabelToggleSelect } from '../utils/combinations'
+import React, { useContext } from 'react'
+import {
+    LegBox,
+    BoldLabel,
+    NumberInput,
+    MultiSelect,
+    LabelChildren,
+    LabelToggleSelect,
+    StrikeElementReturn,
+    getStrikeParameterArray
+} from '../utils'
+
 import { LegContext } from '../../config'
 import LegConstants from '../constants/leg_constants'
-import StrikeElementReturn, { getStrikeParameterArray } from '../utils/strike_criteria_options'
 
 const Legs = () => {
   const { globalData, updateGlobalData } = useContext(LegContext)
